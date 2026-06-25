@@ -1,16 +1,17 @@
 <template>
+  <!-- Mobile Navigation Drawer -->
   <v-navigation-drawer
     v-model="drawer"
     temporary
     location="right"
-    class="bg-dark-secondary border-l border-white/5"
+    style="background: #0B1324; border-left: 1px solid rgba(255,255,255,0.05);"
     width="280"
   >
     <template #prepend>
       <v-list-item class="pt-6 px-4">
-        <div class="flex items-center gap-2">
-          <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-[#2563FF] to-[#4EA8FF] flex items-center justify-center font-bold text-white text-sm">K</div>
-          <span class="text-lg font-semibold text-white tracking-tight">KP_<span class="text-[#2563FF]">TECH</span></span>
+        <div style="display:flex; align-items:center; gap:8px;">
+          <div style="width:32px; height:32px; border-radius:8px; background:linear-gradient(135deg,#2563FF,#4EA8FF); display:flex; align-items:center; justify-content:center; font-weight:700; color:white; font-size:14px;">K</div>
+          <span style="font-size:18px; font-weight:600; color:white; letter-spacing:-0.5px;">KP_<span style="color:#2563FF;">TECH</span></span>
         </div>
       </v-list-item>
     </template>
@@ -20,21 +21,22 @@
         v-for="link in navLinks"
         :key="link.href"
         @click="scrollTo(link.href)"
-        class="text-gray hover:text-white rounded-lg mb-1"
+        style="color:#B7C0CF; border-radius:8px; margin-bottom:4px;"
+        class="mobile-nav-item"
       >
         <template #title>
-          <span class="text-sm font-medium">{{ link.label }}</span>
+          <span style="font-size:14px; font-weight:500;">{{ link.label }}</span>
         </template>
       </v-list-item>
     </v-list>
 
     <template #append>
-      <div class="pa-4 pt-6 border-t border-white/5">
+      <div style="padding:16px; padding-top:24px; border-top:1px solid rgba(255,255,255,0.05);">
         <v-btn
           block
           color="primary"
           size="large"
-          class="text-capitalize font-semibold"
+          style="text-transform:none; font-weight:600; border-radius:12px;"
           href="https://wa.me/5511999999999"
           target="_blank"
         >
@@ -45,46 +47,49 @@
     </template>
   </v-navigation-drawer>
 
+  <!-- Top App Bar -->
   <v-app-bar
     flat
     :class="['navbar', { 'navbar-scrolled': scrolled }]"
     height="64"
-    class="px-4"
+    style="padding: 0 16px;"
   >
     <template #prepend>
       <a
         href="#hero"
         @click.prevent="scrollTo('#hero')"
-        class="flex items-center gap-2 text-decoration-none"
+        style="display:flex; align-items:center; gap:8px; text-decoration:none;"
       >
-        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-[#2563FF] to-[#4EA8FF] flex items-center justify-center font-bold text-white text-sm">K</div>
-        <span class="text-lg font-semibold text-white tracking-tight hidden sm:inline">KP_<span class="text-[#2563FF]">TECH</span></span>
+        <div style="width:32px; height:32px; border-radius:8px; background:linear-gradient(135deg,#2563FF,#4EA8FF); display:flex; align-items:center; justify-content:center; font-weight:700; color:white; font-size:14px;">K</div>
+        <span style="font-size:18px; font-weight:600; color:white; letter-spacing:-0.5px;" class="d-none d-sm-inline">KP_<span style="color:#2563FF;">TECH</span></span>
       </a>
     </template>
 
     <template #default>
-      <div class="hidden lg:flex items-center gap-8 mx-auto">
+      <!-- Desktop Navigation - fixed width container for centering -->
+      <div class="d-none d-lg-flex" style="gap:32px; margin:0 auto;">
         <a
           v-for="link in navLinks"
           :key="link.href"
           :href="link.href"
           @click.prevent="scrollTo(link.href)"
-          class="text-sm font-medium text-gray hover:text-white transition-colors duration-200 text-decoration-none relative group"
+          style="font-size:14px; font-weight:500; color:#B7C0CF; text-decoration:none; transition:color 0.2s; position:relative;"
+          class="nav-link"
         >
           {{ link.label }}
-          <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-[#2563FF] transition-all duration-300 group-hover:w-full" />
+          <span style="position:absolute; bottom:-4px; left:0; width:0; height:2px; background:#2563FF; transition:width 0.3s;" />
         </a>
       </div>
     </template>
 
     <template #append>
-      <div class="flex items-center gap-3">
+      <div style="display:flex; align-items:center; gap:12px;">
         <v-btn
-          class="hidden lg:flex text-capitalize font-medium"
+          class="d-none d-lg-flex"
           color="primary"
           variant="outlined"
           size="small"
-          rounded="xl"
+          style="text-transform:none; font-weight:500; border-radius:12px;"
           href="https://wa.me/5511999999999"
           target="_blank"
         >
@@ -92,10 +97,11 @@
           <v-icon end size="18">mdi-whatsapp</v-icon>
         </v-btn>
         <v-btn
-          class="lg:hidden"
+          class="d-lg-none"
           variant="text"
           icon
           @click="drawer = !drawer"
+          style="color:#B7C0CF;"
         >
           <v-icon>mdi-menu</v-icon>
         </v-btn>
@@ -146,9 +152,22 @@ onUnmounted(() => {
 }
 
 .navbar-scrolled {
-  background: rgba(6, 11, 20, 0.8) !important;
+  background: rgba(6, 11, 20, 0.85) !important;
   backdrop-filter: blur(20px) !important;
   -webkit-backdrop-filter: blur(20px) !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+.nav-link:hover {
+  color: #F8FAFC !important;
+}
+
+.nav-link:hover span {
+  width: 100% !important;
+}
+
+.mobile-nav-item:hover {
+  background: rgba(255, 255, 255, 0.05) !important;
+  color: #F8FAFC !important;
 }
 </style>

@@ -1,28 +1,28 @@
 <template>
-  <section class="position-relative py-16 py-sm-16 overflow-hidden" style="background: rgba(11, 19, 36, 0.3);">
-    <v-container class="position-relative" style="z-index: 10;">
+  <section style="position:relative; padding:96px 0; overflow:hidden; background:rgba(11,19,36,0.3);">
+    <v-container style="position:relative; z-index:10;">
       <div class="text-center mb-12 fade-up">
-        <span class="d-inline-block text-caption font-weight-bold text-primary tracking-wider text-uppercase mb-4" style="letter-spacing: 0.2em;">Processo</span>
-        <h2 class="text-h3 text-sm-h2 text-md-h1 font-weight-bold text-white">Como trabalhamos</h2>
+        <span style="display:inline-block; font-size:12px; font-weight:700; color:#2563FF; letter-spacing:0.2em; text-transform:uppercase; margin-bottom:16px;">Processo</span>
+        <h2 style="font-size:2rem; font-weight:700; color:#F8FAFC;" class="text-sm-h2 text-md-h1">Como trabalhamos</h2>
       </div>
 
-      <div class="position-relative" style="max-width: 800px; margin: 0 auto;">
+      <div style="position:relative; max-width:800px; margin:0 auto;">
         <!-- Vertical Line -->
-        <div class="position-absolute d-none d-md-block" style="left: 120px; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg, rgba(37,99,255,0.5), rgba(78,168,255,0.1));" />
+        <div class="d-none d-md-block" style="position:absolute; left:120px; top:0; bottom:0; width:2px; background:linear-gradient(180deg, rgba(37,99,255,0.5), rgba(78,168,255,0.1));" />
 
-        <v-row v-for="(step, i) in steps" :key="step.step" class="align-center py-6">
+        <v-row v-for="(step, i) in steps" :key="step.step" align="center" class="py-6">
           <v-col cols="12" md="3" class="text-center text-md-end">
-            <div class="fade-left" :style="{ transitionDelay: `${i * 0.15}s` }">
-              <span class="text-h3 font-weight-black text-primary">{{ step.step }}</span>
+            <div class="fade-left" :class="`delay-${i + 1}`">
+              <span style="font-size:2rem; font-weight:900; color:#2563FF;" class="text-h3">{{ step.step }}</span>
             </div>
           </v-col>
-          <v-col cols="12" md="1" class="d-none d-md-flex justify-center position-relative">
-            <div class="rounded-circle border-2" style="width: 16px; height: 16px; background: #060B14; border-color: #2563FF !important; z-index: 2;" />
+          <v-col cols="12" md="1" class="d-none d-md-flex justify-center" style="position:relative;">
+            <div style="width:16px; height:16px; border-radius:50%; background:#060B14; border:2px solid #2563FF; z-index:2;" />
           </v-col>
           <v-col cols="12" md="8">
-            <div class="fade-right" :style="{ transitionDelay: `${i * 0.15}s` }">
-              <h3 class="text-h5 font-weight-semibold text-white mb-2">{{ step.title }}</h3>
-              <p class="text-body-1 text-gray">{{ step.description }}</p>
+            <div class="fade-right" :class="`delay-${i + 1}`">
+              <h3 style="font-size:20px; font-weight:600; color:#F8FAFC; margin-bottom:8px;">{{ step.title }}</h3>
+              <p style="font-size:16px; color:#B7C0CF;">{{ step.description }}</p>
             </div>
           </v-col>
         </v-row>

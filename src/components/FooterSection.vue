@@ -1,23 +1,23 @@
 <template>
-  <footer class="position-relative py-12 overflow-hidden" style="background: rgba(6, 11, 20, 0.8); border-top: 1px solid rgba(255, 255, 255, 0.06);">
+  <footer style="position:relative; padding:48px 0; overflow:hidden; background:rgba(6,11,20,0.8); border-top:1px solid rgba(255,255,255,0.06);">
     <v-container>
-      <v-row class="gy-8">
+      <v-row>
         <!-- Logo & Description -->
         <v-col cols="12" md="4">
-          <div class="d-flex align-center gap-2 mb-4">
-            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-[#2563FF] to-[#4EA8FF] d-flex align-center justify-center font-weight-bold text-white" style="width: 32px; height: 32px; font-size: 14px;">K</div>
-            <span class="text-h6 font-weight-semibold text-white">KP_<span class="text-[#2563FF]">TECH</span></span>
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom:16px;">
+            <div style="width:32px; height:32px; border-radius:8px; background:linear-gradient(135deg,#2563FF,#4EA8FF); display:flex; align-items:center; justify-content:center; font-weight:700; color:white; font-size:14px;">K</div>
+            <span style="font-size:18px; font-weight:600; color:#F8FAFC;">KP_<span style="color:#2563FF;">TECH</span></span>
           </div>
-          <p class="text-body-2 text-gray" style="max-width: 280px;">
+          <p style="font-size:14px; color:#B7C0CF; max-width:280px; line-height:1.6;">
             Transformando ideias em soluções digitais de alto impacto. Tecnologia, design e estratégia para o seu negócio.
           </p>
         </v-col>
 
         <!-- Quick Links -->
         <v-col cols="6" md="2">
-          <p class="text-caption font-weight-bold text-white text-uppercase mb-4" style="letter-spacing: 0.1em;">Links</p>
-          <div class="d-flex flex-column gap-2">
-            <a v-for="link in quickLinks" :key="link.label" :href="link.href" @click.prevent="scrollTo(link.href)" class="text-caption text-gray text-decoration-none hover-text-white" style="transition: color 0.2s;">
+          <p style="font-size:12px; font-weight:700; color:#F8FAFC; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:16px;">Links</p>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <a v-for="link in quickLinks" :key="link.label" :href="link.href" @click.prevent="scrollTo(link.href)" style="font-size:13px; color:#B7C0CF; text-decoration:none; transition:color 0.2s; cursor:pointer;" class="footer-link">
               {{ link.label }}
             </a>
           </div>
@@ -25,18 +25,18 @@
 
         <!-- Contact -->
         <v-col cols="6" md="3">
-          <p class="text-caption font-weight-bold text-white text-uppercase mb-4" style="letter-spacing: 0.1em;">Contato</p>
-          <div class="d-flex flex-column gap-2">
-            <p class="text-caption text-gray mb-0">contato@kptech.com.br</p>
-            <p class="text-caption text-gray mb-0">(11) 99999-9999</p>
-            <p class="text-caption text-gray mb-0">São Paulo, SP</p>
+          <p style="font-size:12px; font-weight:700; color:#F8FAFC; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:16px;">Contato</p>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <p style="font-size:13px; color:#B7C0CF; margin-bottom:0;">contato@kptech.com.br</p>
+            <p style="font-size:13px; color:#B7C0CF; margin-bottom:0;">(11) 99999-9999</p>
+            <p style="font-size:13px; color:#B7C0CF; margin-bottom:0;">São Paulo, SP</p>
           </div>
         </v-col>
 
         <!-- Social -->
         <v-col cols="12" md="3">
-          <p class="text-caption font-weight-bold text-white text-uppercase mb-4" style="letter-spacing: 0.1em;">Redes Sociais</p>
-          <div class="d-flex gap-3">
+          <p style="font-size:12px; font-weight:700; color:#F8FAFC; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:16px;">Redes Sociais</p>
+          <div style="display:flex; gap:12px;">
             <v-btn
               v-for="social in socials"
               :key="social.name"
@@ -45,7 +45,8 @@
               variant="text"
               icon
               size="small"
-              class="text-gray hover-text-primary"
+              style="color:#B7C0CF; transition:color 0.2s;"
+              class="social-btn"
             >
               <v-icon>{{ social.icon }}</v-icon>
             </v-btn>
@@ -53,10 +54,10 @@
         </v-col>
       </v-row>
 
-      <v-divider class="my-8" style="border-color: rgba(255,255,255,0.06);" />
+      <v-divider style="margin:32px 0; border-color:rgba(255,255,255,0.06);" />
 
       <div class="text-center">
-        <p class="text-caption text-gray mb-0">
+        <p style="font-size:12px; color:#B7C0CF; margin-bottom:0;">
           &copy; {{ new Date().getFullYear() }} KP_TECH. Todos os direitos reservados.
         </p>
       </div>
@@ -85,10 +86,10 @@ const scrollTo = (href: string) => {
 </script>
 
 <style scoped>
-.hover-text-white:hover {
+.footer-link:hover {
   color: #F8FAFC !important;
 }
-.hover-text-primary:hover {
+.social-btn:hover {
   color: #2563FF !important;
 }
 </style>

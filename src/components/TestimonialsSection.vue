@@ -1,31 +1,35 @@
 <template>
-  <section class="position-relative py-16 py-sm-16 overflow-hidden">
-    <div class="position-absolute" style="top: 0; right: 25%; width: 256px; height: 256px; background: rgba(37,99,255,0.05); border-radius: 50%; filter: blur(120px);" />
+  <section style="position:relative; padding:96px 0; overflow:hidden;">
+    <div style="position:absolute; top:0; right:25%; width:256px; height:256px; background:rgba(37,99,255,0.05); border-radius:50%; filter:blur(120px);" />
 
-    <v-container class="position-relative" style="z-index: 10;">
+    <v-container style="position:relative; z-index:10;">
       <div class="text-center mb-12 fade-up">
-        <span class="d-inline-block text-caption font-weight-bold text-primary tracking-wider text-uppercase mb-4" style="letter-spacing: 0.2em;">Depoimentos</span>
-        <h2 class="text-h3 text-sm-h2 text-md-h1 font-weight-bold text-white">O que nossos clientes dizem</h2>
+        <span style="display:inline-block; font-size:12px; font-weight:700; color:#2563FF; letter-spacing:0.2em; text-transform:uppercase; margin-bottom:16px;">Depoimentos</span>
+        <h2 style="font-size:2rem; font-weight:700; color:#F8FAFC;" class="text-sm-h2 text-md-h1">O que nossos clientes dizem</h2>
       </div>
 
       <v-row>
         <v-col v-for="(testimonial, i) in testimonials" :key="testimonial.name" cols="12" md="4">
-          <div class="testimonial-card pa-6 rounded-xl h-100 fade-up" :style="{ transitionDelay: `${i * 0.15}s` }">
-            <div class="d-flex align-center gap-3 mb-4">
-              <v-avatar size="48" :color="avatarColors[i]" class="font-weight-bold text-white">
+          <div
+            class="hover-card fade-up"
+            :class="`delay-${i + 1}`"
+            style="padding:24px; border-radius:12px; background:rgba(11,19,36,0.6); border:1px solid rgba(255,255,255,0.06); backdrop-filter:blur(12px); height:100%;"
+          >
+            <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+              <v-avatar size="48" :color="avatarColors[i]" style="font-weight:700; color:white;">
                 {{ testimonial.avatar }}
               </v-avatar>
               <div>
-                <p class="text-subtitle-1 font-weight-semibold text-white mb-0">{{ testimonial.name }}</p>
-                <p class="text-caption text-gray mb-0">{{ testimonial.company }}</p>
+                <p style="font-size:15px; font-weight:600; color:#F8FAFC; margin-bottom:0;">{{ testimonial.name }}</p>
+                <p style="font-size:12px; color:#B7C0CF; margin-bottom:0;">{{ testimonial.company }}</p>
               </div>
             </div>
             
-            <div class="d-flex mb-3">
+            <div style="display:flex; margin-bottom:12px;">
               <v-icon v-for="star in 5" :key="star" size="16" color="warning">mdi-star</v-icon>
             </div>
 
-            <p class="text-body-2 text-gray" style="line-height: 1.7;">"{{ testimonial.text }}"</p>
+            <p style="font-size:14px; color:#B7C0CF; line-height:1.7;">"{{ testimonial.text }}"</p>
           </div>
         </v-col>
       </v-row>
@@ -57,18 +61,3 @@ const testimonials = [
   },
 ]
 </script>
-
-<style scoped>
-.testimonial-card {
-  background: rgba(11, 19, 36, 0.6) !important;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(12px);
-  transition: all 0.4s ease;
-}
-
-.testimonial-card:hover {
-  border-color: rgba(37, 99, 255, 0.2);
-  box-shadow: 0 0 20px rgba(37, 99, 255, 0.1);
-  transform: translateY(-2px);
-}
-</style>

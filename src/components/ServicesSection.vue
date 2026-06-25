@@ -1,15 +1,15 @@
 <template>
-  <section id="servicos" class="position-relative py-16 py-sm-16 overflow-hidden" style="background: rgba(11, 19, 36, 0.3);">
-    <div class="position-absolute top-0" style="left: 25%; width: 192px; height: 192px; background: rgba(37,99,255,0.05); border-radius: 50%; filter: blur(100px);" />
+  <section id="servicos" style="position:relative; padding:96px 0; overflow:hidden; background:rgba(11,19,36,0.3);">
+    <div style="position:absolute; top:0; left:25%; width:192px; height:192px; background:rgba(37,99,255,0.05); border-radius:50%; filter:blur(100px);" />
 
-    <v-container class="position-relative" style="z-index: 10;">
+    <v-container style="position:relative; z-index:10;">
       <!-- Section Header -->
       <div class="text-center mb-12 fade-up">
-        <span class="d-inline-block text-caption font-weight-bold text-primary tracking-wider text-uppercase mb-4" style="letter-spacing: 0.2em;">Serviços</span>
-        <h2 class="text-h3 text-sm-h2 text-md-h1 font-weight-bold text-white">
+        <span style="display:inline-block; font-size:12px; font-weight:700; color:#2563FF; letter-spacing:0.2em; text-transform:uppercase; margin-bottom:16px;">Serviços</span>
+        <h2 style="font-size:2rem; font-weight:700; color:#F8FAFC; line-height:1.2;" class="text-sm-h2 text-md-h1">
           Tecnologia a serviço<br class="d-sm-none" /> das ideias
         </h2>
-        <p class="mt-4 text-gray text-body-1 max-w-lg mx-auto">
+        <p style="color:#B7C0CF; font-size:16px; margin-top:16px; max-width:600px; margin-left:auto; margin-right:auto;">
           Soluções completas para transformar seu negócio digitalmente
         </p>
       </div>
@@ -18,15 +18,15 @@
       <v-row>
         <v-col v-for="(service, i) in services" :key="service.title" cols="12" sm="6" lg="3">
           <div
-            class="service-card pa-8 rounded-xl h-100"
-            :class="`fade-up`"
-            :style="{ transitionDelay: `${i * 0.1}s` }"
+            class="hover-card"
+            :class="`fade-up delay-${i + 1}`"
+            style="padding:32px; border-radius:12px; background:rgba(11,19,36,0.6); border:1px solid rgba(255,255,255,0.06); height:100%; cursor:default;"
           >
-            <div class="w-14 h-14 rounded-xl d-flex align-center justify-center mb-6" style="background: rgba(37,99,255,0.1);">
+            <div style="width:56px; height:56px; border-radius:12px; background:rgba(37,99,255,0.1); display:flex; align-items:center; justify-content:center; margin-bottom:24px;">
               <v-icon size="28" color="primary">{{ service.icon }}</v-icon>
             </div>
-            <h3 class="text-h6 font-weight-semibold text-white mb-3">{{ service.title }}</h3>
-            <p class="text-body-2 text-gray">{{ service.description }}</p>
+            <h3 style="font-size:18px; font-weight:600; color:#F8FAFC; margin-bottom:12px;">{{ service.title }}</h3>
+            <p style="font-size:14px; color:#B7C0CF; line-height:1.7;">{{ service.description }}</p>
           </div>
         </v-col>
       </v-row>
@@ -58,18 +58,3 @@ const services = [
   },
 ]
 </script>
-
-<style scoped>
-.service-card {
-  background: rgba(11, 19, 36, 0.6) !important;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  transition: all 0.5s ease;
-  cursor: default;
-}
-
-.service-card:hover {
-  border-color: rgba(37, 99, 255, 0.3);
-  box-shadow: 0 0 30px rgba(37, 99, 255, 0.15), 0 0 60px rgba(37, 99, 255, 0.05);
-  transform: translateY(-4px);
-}
-</style>

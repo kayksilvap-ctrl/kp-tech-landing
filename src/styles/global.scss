@@ -26,6 +26,7 @@ body {
   background-clip: text;
 }
 
+/* Glass effects */
 .glass {
   background: rgba(11, 19, 36, 0.6) !important;
   backdrop-filter: blur(20px) !important;
@@ -47,52 +48,109 @@ body {
   background-size: 60px 60px;
 }
 
-.bg-radial-blue {
-  background: radial-gradient(ellipse at center, rgba(37, 99, 255, 0.15) 0%, transparent 70%);
-}
+/* ===== ANIMAÇÕES CONTÍNUAS ===== */
 
-// Animations
-@keyframes float {
+/* Float suave constante - todos os cards flutuam sempre */
+@keyframes continuous-float {
   0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
+  33% { transform: translateY(-8px); }
+  66% { transform: translateY(4px); }
 }
 
-@keyframes float-delayed {
+@keyframes continuous-float-slow {
   0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-15px); }
+  50% { transform: translateY(-12px); }
 }
 
-@keyframes pulse-glow {
-  0%, 100% { opacity: 0.6; }
-  50% { opacity: 1; }
+@keyframes continuous-float-card {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
 }
 
-@keyframes spin-slow {
+/* Glow pulsante constante */
+@keyframes continuous-glow {
+  0%, 100% { 
+    box-shadow: 0 0 20px rgba(37, 99, 255, 0.1), 0 0 40px rgba(37, 99, 255, 0.05);
+    opacity: 0.7;
+  }
+  50% { 
+    box-shadow: 0 0 40px rgba(37, 99, 255, 0.25), 0 0 80px rgba(37, 99, 255, 0.1);
+    opacity: 1;
+  }
+}
+
+@keyframes continuous-pulse {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.05); }
+}
+
+/* Spin constante */
+@keyframes continuous-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
 
-.animate-float {
-  animation: float 6s ease-in-out infinite;
+@keyframes continuous-spin-reverse {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
 }
 
-.animate-float-delayed {
-  animation: float-delayed 7s ease-in-out infinite;
+/* Shimmer constante para gradientes */
+@keyframes continuous-shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
 }
 
-.animate-pulse-glow {
-  animation: pulse-glow 3s ease-in-out infinite;
+/* Breath - mesmo sem scroll, elementos respiram */
+@keyframes continuous-breath {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
 }
 
-.animate-spin-slow {
-  animation: spin-slow 20s linear infinite;
+/* Utility classes para animações contínuas */
+.anim-float {
+  animation: continuous-float 6s ease-in-out infinite;
 }
 
-// Scroll-triggered animations
+.anim-float-slow {
+  animation: continuous-float-slow 8s ease-in-out infinite;
+}
+
+.anim-float-card {
+  animation: continuous-float-card 5s ease-in-out infinite;
+}
+
+.anim-glow {
+  animation: continuous-glow 3s ease-in-out infinite;
+}
+
+.anim-pulse {
+  animation: continuous-pulse 4s ease-in-out infinite;
+}
+
+.anim-spin {
+  animation: continuous-spin 20s linear infinite;
+}
+
+.anim-spin-reverse {
+  animation: continuous-spin-reverse 25s linear infinite;
+}
+
+.anim-breath {
+  animation: continuous-breath 3s ease-in-out infinite;
+}
+
+.anim-shimmer {
+  background-size: 200% auto;
+  animation: continuous-shimmer 3s linear infinite;
+}
+
+/* Scroll-triggered animations - with retrigger support */
 .fade-up {
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
   
   &.visible {
     opacity: 1;
@@ -103,7 +161,8 @@ body {
 .fade-left {
   opacity: 0;
   transform: translateX(-30px);
-  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
   
   &.visible {
     opacity: 1;
@@ -114,7 +173,8 @@ body {
 .fade-right {
   opacity: 0;
   transform: translateX(30px);
-  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
   
   &.visible {
     opacity: 1;
@@ -122,7 +182,26 @@ body {
   }
 }
 
-// Noise overlay
+/* Stagger delay utilities */
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+.delay-3 { transition-delay: 0.3s; }
+.delay-4 { transition-delay: 0.4s; }
+.delay-5 { transition-delay: 0.5s; }
+
+/* Hover card effects */
+.hover-card {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, box-shadow;
+}
+
+.hover-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 30px rgba(37, 99, 255, 0.15), 0 0 60px rgba(37, 99, 255, 0.05);
+  border-color: rgba(37, 99, 255, 0.3) !important;
+}
+
+/* Noise overlay */
 .noise-overlay {
   position: fixed;
   top: 0;
@@ -137,7 +216,7 @@ body {
   background-size: 256px 256px;
 }
 
-// Vuetify overrides
+/* Vuetify overrides */
 .v-btn--primary {
   background: #2563FF !important;
 }
@@ -146,4 +225,10 @@ body {
   background: rgba(11, 19, 36, 0.6) !important;
   border: 1px solid rgba(255, 255, 255, 0.06) !important;
   backdrop-filter: blur(12px);
+}
+
+.v-app-bar .v-toolbar__content {
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
 }
