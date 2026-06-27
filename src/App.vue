@@ -1,6 +1,9 @@
 <template>
   <v-app>
     <div class="noise-overlay" />
+    <div class="spotlight" ref="spotlightRef" />
+    <div class="custom-cursor" ref="cursorRef" />
+    <div class="custom-cursor-dot" ref="cursorDotRef" />
     <Particles />
     <NavBar />
     
@@ -20,7 +23,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 import Particles from './components/Particles.vue'
 import NavBar from './components/NavBar.vue'
 import HeroSection from './components/HeroSection.vue'
@@ -33,7 +36,28 @@ import TestimonialsSection from './components/TestimonialsSection.vue'
 import CTASection from './components/CTASection.vue'
 import FooterSection from './components/FooterSection.vue'
 
+const cursorRef = ref<HTMLElement | null>(null)
+const cursorDotRef = ref<HTMLElement | null>(null)
+const spotlightRef = ref<HTMLElement | null>(null)
+
 onMounted(() => {
+  // Custom cursor + spotlight
+  const cursor = cursorRef.value
+  const dot = cursorDotRef.value
+  const spotlight = spotlightRef.value
+
+  if (!cursor || !dot || !spotlight) return
+
+  const onMouseMove = (e: MouseEvent) => {
+    cursor.style.transform = `translate(${e.clientX - 10}px, ${e.clientY - 10}px)`
+    dot.style.transform = `translate(${e.clientX - 2}px, ${e.clientY - 2}px)`
+    spotlight.style.setProperty('--mouse-x', `${e.clientX}px`)
+    spotlight.style.setProperty('--mouse-y', `${e.clientY}px`)
+  }
+
+  document.addEventListener('mousemove', onMouseMove)
+
+  // Scroll animations
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
